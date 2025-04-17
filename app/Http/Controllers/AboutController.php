@@ -10,6 +10,7 @@ use Exception;
 class AboutController extends Controller
 {
     // Show the first about record
+    //zabeer test ok
     public function show()
     {
         try {
