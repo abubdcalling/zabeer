@@ -1,85 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use App\Models\ReviewContent;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Exception;
-
-class ReviewContentController extends Controller
+return new class extends Migration
 {
-    public function show()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        try {
-            $review = ReviewContent::first();
-
-            if ($review) {
-                $review->back_img = $review->back_img ? url('uploads/ReviewContents/' . $review->back_img) : null;
-            }
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Review content retrieved successfully.',
-                'data'    => $review
-            ]);
-        } catch (Exception $e) {
-            Log::error('Error fetching review content: ' . $e->getMessage());
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to retrieve review content.'
-            ], 500);
-        }
+        Schema::create('review_contents', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100)->nullable(); // Optional name
+            $table->unsignedTinyInteger('star'); // Star rating: 1–5
+            $table->string('back_img')->nullable();
+            $table->longText('content')->nullable();
+            $table->timestamps();
+        });
     }
 
-    public function storeOrUpdate(Request $request)
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        try {
-            $validated = $request->validate([
-                'name'     => 'nullable|string|max:100',
-                'star'     => 'required|integer|min:1|max:5',
-                'content'  => 'nullable|string',
-                'back_img' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
-            ]);
-
-            $review = ReviewContent::first();
-            $back_img = $review->back_img ?? null;
-
-            if ($request->hasFile('back_img')) {
-                $file = $request->file('back_img');
-                $back_img = time() . '_review_back_img.' . $file->getClientOriginalExtension();
-                $file->move(public_path('uploads/ReviewContents'), $back_img);
-            }
-
-            $data = [
-                'name'     => $validated['name'] ?? null,
-                'star'     => $validated['star'],
-                'content'  => $validated['content'] ?? null,
-                'back_img' => $back_img,
-            ];
-
-            if ($review) {
-                $review->update($data);
-            } else {
-                $review = ReviewContent::create($data);
-            }
-
-            $review->back_img = $review->back_img ? url('uploads/ReviewContents/' . $review->back_img) : null;
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Review content saved successfully.',
-                'data'    => $review
-            ]);
-        } catch (Exception $e) {
-            Log::error('Error saving review content: ' . $e->getMessage());
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to save review content.',
-                'error'   => $e->getMessage()
-            ], 500);
-        }
+        Schema::dropIfExists('review_contents');
     }
-}
+};
