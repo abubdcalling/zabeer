@@ -16,7 +16,6 @@ class AddressController extends Controller
             $address = Address::first();
 
             if ($address) {
-                $address->img = $address->img ? url('uploads/Addresses/' . $address->img) : null;
                 $address->icon = $address->icon ? url('uploads/Addresses/' . $address->icon) : null;
             }
 
@@ -40,15 +39,7 @@ class AddressController extends Controller
     {
         try {
             $address = Address::first();
-
-            $img = $address?->img;
             $icon = $address?->icon;
-
-            if ($request->hasFile('img')) {
-                $file = $request->file('img');
-                $img = time() . '_img.' . $file->getClientOriginalExtension();
-                $file->move(public_path('uploads/Addresses'), $img);
-            }
 
             if ($request->hasFile('icon')) {
                 $file = $request->file('icon');
@@ -59,7 +50,6 @@ class AddressController extends Controller
             $data = [
                 'title'    => $request->input('title'),
                 'location' => $request->input('location'),
-                'img'      => $img,
                 'icon'     => $icon,
             ];
 
@@ -69,8 +59,7 @@ class AddressController extends Controller
                 $address = Address::create($data);
             }
 
-            // Convert to full URLs
-            $address->img = $address->img ? url('uploads/Addresses/' . $address->img) : null;
+            // Convert icon to full URL
             $address->icon = $address->icon ? url('uploads/Addresses/' . $address->icon) : null;
 
             return response()->json([
