@@ -16,9 +16,7 @@ class FooterController extends Controller
          try {
              $Footer = Footer::first();
  
-             if ($Footer) {
-                 $Footer->back_img = $Footer->back_img ? url('uploads/Footers/' . $Footer->back_img) : null;
-             }
+             
  
              return response()->json([
                  'success' => true,
@@ -56,7 +54,7 @@ class FooterController extends Controller
              }
  
              // Convert back_img to full URL
-             $Footer->back_img = $Footer->back_img ? url('uploads/Footers/' . $Footer->back_img) : null;
+            //  $Footer->back_img = $Footer->back_img ? url('uploads/Footers/' . $Footer->back_img) : null;
  
              return response()->json([
                  'success' => true,
