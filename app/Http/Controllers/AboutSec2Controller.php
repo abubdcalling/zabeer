@@ -18,6 +18,14 @@ class AboutSec2Controller extends Controller
             if ($aboutSec2) {
                 $aboutSec2->img = $aboutSec2->img ? url('uploads/AboutSec2/' . $aboutSec2->img) : null;
                 $aboutSec2->video = $aboutSec2->video ? url('uploads/AboutSec2/' . $aboutSec2->video) : null;
+
+                $aboutSec2->icon = $aboutSec2->icon ? url('uploads/AboutSec2/icons/' . $aboutSec2->icon) : null;
+
+
+                for ($i = 1; $i <= 5; $i++) {
+                    $iconField = 'icon' . $i;
+                    $aboutSec2->{$iconField} = $aboutSec2->{$iconField} ? url('uploads/AboutSec2/icons/' . $aboutSec2->{$iconField}) : null;
+                }
             }
 
             return response()->json([
