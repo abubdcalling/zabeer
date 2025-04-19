@@ -19,7 +19,7 @@ class ServiceController extends Controller
                 // Convert icon paths to full URLs
                 $service->icon = $service->icon ? url('uploads/Services/icons/' . $service->icon) : null;
 
-                for ($i = 1; $i <= 4; $i++) {
+                for ($i = 1; $i <= 7; $i++) {
                     $iconField = 'icon' . $i;
                     $service->{$iconField} = $service->{$iconField} ? url('uploads/Services/icons/' . $service->{$iconField}) : null;
                 }
@@ -81,7 +81,7 @@ class ServiceController extends Controller
 
             // Return full URLs for icons
             $service->icon = $service->icon ? url('uploads/Services/icons/' . $service->icon) : null;
-            for ($i = 1; $i <= 8; $i++) {
+            for ($i = 1; $i <= 7; $i++) {
                 $iconField = 'icon' . $i;
                 $service->{$iconField} = $service->{$iconField} ? url('uploads/Services/icons/' . $service->{$iconField}) : null;
             }
