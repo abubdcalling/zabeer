@@ -30,6 +30,15 @@ return new class extends Migration
             $table->string('icon4')->nullable();
 
             $table->string('title5')->nullable();
+            $table->string('icon5')->nullable();
+
+            $table->string('title6')->nullable();
+            $table->string('icon6')->nullable();
+
+            $table->string('title7')->nullable();
+            $table->string('icon7')->nullable();
+
+            $table->string('title8')->nullable();
 
 
 

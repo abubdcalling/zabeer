@@ -46,7 +46,7 @@ class ServiceController extends Controller
         try {
             $service = Service::first();
 
-            $iconFields = ['icon', 'icon1', 'icon2', 'icon3', 'icon4'];
+            $iconFields = ['icon', 'icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6', 'icon7'];
             $iconData = [];
 
             foreach ($iconFields as $field) {
@@ -68,6 +68,9 @@ class ServiceController extends Controller
                 'title3'  => $request->input('title3'),
                 'title4'  => $request->input('title4'),
                 'title5'  => $request->input('title5'),
+                'title6'  => $request->input('title6'),
+                'title7'  => $request->input('title7'),
+                'title8'  => $request->input('title8'),
             ] + $iconData;
 
             if ($service) {
@@ -78,7 +81,7 @@ class ServiceController extends Controller
 
             // Return full URLs for icons
             $service->icon = $service->icon ? url('uploads/Services/icons/' . $service->icon) : null;
-            for ($i = 1; $i <= 4; $i++) {
+            for ($i = 1; $i <= 8; $i++) {
                 $iconField = 'icon' . $i;
                 $service->{$iconField} = $service->{$iconField} ? url('uploads/Services/icons/' . $service->{$iconField}) : null;
             }
