@@ -9,6 +9,30 @@ use Exception;
 
 class MenuController extends Controller
 {
+    public function show()
+    {
+        try {
+            $menu = Menu::first();
+
+            if ($menu) {
+                $menu->back_img = $menu->back_img ? url('uploads/Menus/' . $menu->back_img) : null;
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'menu data retrieved successfully.',
+                'data' => $menu
+            ]);
+        } catch (Exception $e) {
+            Log::error('Error fetching menu: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve menu data.'
+            ], 500);
+        }
+    }
+
     public function storeOrUpdate(Request $request)
     {
         try {

@@ -48,7 +48,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Dynamic3 Background Design belongs from OurServices
 Route::middleware('auth:api')->group(function () {
-    // Route::get('/menu', [MenuController::class, 'show']);
+    Route::get('/services/background', [MenuController::class, 'show']);
     Route::post('/services/background', [MenuController::class, 'storeOrUpdate']);
 });
 
