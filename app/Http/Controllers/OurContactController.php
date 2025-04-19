@@ -41,8 +41,8 @@ class OurContactController extends Controller
                 'heading'       => 'nullable|string|max:255',
                 'email'         => 'nullable|email|max:255',
                 'phone'         => 'nullable|string|max:20',
-                'email_icon'    => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
-                'phone_icon'    => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+                'email_icon'    => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:10240',
+                'phone_icon'    => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:10240',
                 'copyright'     => 'nullable|string|max:255',
             ]);
 

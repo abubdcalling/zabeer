@@ -14,11 +14,16 @@ use App\Models\Banner;
 use App\Models\Body1;
 use App\Models\Body2;
 use App\Models\Contact;
+use App\Models\ContactMessage;
 use App\Models\Footer;
 use App\Models\Hero;
 use App\Models\Menu;
 use App\Models\Navbar;
+use App\Models\OurContact;
 use App\Models\OurCoreValue;
+use App\Models\PoweredByMrPc;
+use App\Models\Review;
+use App\Models\ReviewContent;
 use App\Models\Service;
 
 class FrontendController extends Controller
@@ -26,24 +31,28 @@ class FrontendController extends Controller
     public function getAllData()
     {
         $data = [
-            'home' => Home::all(),
-            'aboutsec2' => AboutSec2::all(),
-            'address' => Address::all(),
-            'banner' => Banner::all(),
-            'body1'=>Body1::all(),
-            'body2'=>Body2::all(),
-            'hero' => Hero::all(),
             'navbar' => Navbar::all(), 
-            'possible' => Possible::all(),
-            'whychooseus' => WhyChooseUs::all(),
+            'home' => Home::all(),
             'about' => About::all(),
-            'contact' => Contact::all(),
-            'menu' => Menu::all(),
+            'aboutsec2' => AboutSec2::all(),
+            'banner' => Banner::all(),
+            'services_background' => Menu::all(),
+            'services_heading' => Hero::all(),
+            'services_projectmanagement'=>Body1::all(),
+            'services_support'=>Body2::all(),
+            'possible' => Possible::all(),
             'ourcorevalue' => OurCoreValue::all(),
-            'service' => Service::all(),
             'whychooseus' => WhyChooseUs::all(),
+            'poweredbymrpc' => PoweredByMrPc::all(),
+            'service' => Service::all(),
+            'contact' => Contact::all(),
+            'review' => Review::all(),
+            'ourcontact' => OurContact::all(),
             'footer' => Footer::all(),
-            
+            'contactmessage' => ContactMessage::all(),
+            'reviewcontent' => ReviewContent::all(), 
+            'address' => Address::all(),
+
         ];
 
         return response()->json($data);

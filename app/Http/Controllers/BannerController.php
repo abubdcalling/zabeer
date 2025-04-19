@@ -43,7 +43,7 @@ class BannerController extends Controller
                 'description'  => 'nullable|string',
                 'button_name'  => 'nullable|string|max:255',
                 'button_url'   => 'nullable|string|max:255',
-                'back_img'     => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+                'back_img'     => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:10240',
             ]);
 
             $banner = Banner::first();

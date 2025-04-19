@@ -40,7 +40,7 @@ class ReviewContentController extends Controller
                 'name'     => 'nullable|string|max:100',
                 'star'     => 'required|integer|min:1|max:5',
                 'content'  => 'nullable|string',
-                'back_img' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+                'back_img' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:10240',
             ]);
 
             $review = ReviewContent::first();
