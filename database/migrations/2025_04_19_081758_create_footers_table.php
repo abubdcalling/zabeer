@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('footers', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();    
+            $table->string('sub_title')->nullable(); 
+            $table->string('back_img')->nullable();
             $table->timestamps();
         });
     }

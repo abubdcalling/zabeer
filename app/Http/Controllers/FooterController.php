@@ -40,18 +40,13 @@ class FooterController extends Controller
      {
          try {
              $Footer = Footer::first();
-             $back_img = $Footer?->back_img;
  
-             if ($request->hasFile('back_img')) {
-                 $file = $request->file('back_img');
-                 $back_img = time() . '_back_img.' . $file->getClientOriginalExtension();
-                 $file->move(public_path('uploads/Footers'), $back_img);
-             }
+             
  
              $data = [
                  'title'    => $request->input('title'),
                  'sub_title' => $request->input('sub_title'),
-                 'back_img'     => $back_img,
+                 'back_img'     => $request->input('back_img'),
              ];
  
              if ($Footer) {
