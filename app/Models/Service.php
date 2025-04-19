@@ -19,7 +19,7 @@ class Service extends Model
         'title5', 'icon5',
         'title6', 'icon6',
         'title7', 'icon7',
-        'title8', 
+        'title', 
     ];
 
     

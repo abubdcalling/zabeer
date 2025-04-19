@@ -70,7 +70,7 @@ class ServiceController extends Controller
                 'title5'  => $request->input('title5'),
                 'title6'  => $request->input('title6'),
                 'title7'  => $request->input('title7'),
-                'title8'  => $request->input('title8'),
+                'title'  => $request->input('title'),
             ] + $iconData;
 
             if ($service) {

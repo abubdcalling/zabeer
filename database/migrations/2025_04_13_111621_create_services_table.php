@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('title7')->nullable();
             $table->string('icon7')->nullable();
 
-            $table->string('title8')->nullable();
+            $table->string('title')->nullable();
 
 
 
