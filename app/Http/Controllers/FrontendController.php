@@ -26,7 +26,7 @@ class FrontendController extends Controller
     {
         $data = [
             'home' => Home::all(),
-            'aboutsec2=' => AboutSec2::all(),
+            'aboutsec2' => AboutSec2::all(),
             'address' => Address::all(),
             'banner' => Banner::all(),
             'body1'=>Body1::all(),
