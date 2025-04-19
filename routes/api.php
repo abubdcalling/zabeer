@@ -20,6 +20,7 @@ use App\Models\WhyChooseUs;
 use App\Http\Controllers\WhyChooseUsController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ContactMessageController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\OurContactController;
@@ -192,3 +193,10 @@ Route::middleware('auth:api')->group(function () {
 Route::get('/frontend-data', [FrontendController::class, 'getAllData']);
 Route::post('/contactMessage', [ContactMessageController::class, 'store']);
 // Route::post('/Message', [ContactMessageController::class, 'store']);
+
+
+// Dynamic3 address Design
+Route::middleware('auth:api')->group(function () {
+    Route::get('/footer', [FooterController::class, 'show']);
+    Route::post('/footer', [FooterController::class, 'storeOrUpdate']);
+});

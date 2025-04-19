@@ -14,6 +14,7 @@ use App\Models\Banner;
 use App\Models\Body1;
 use App\Models\Body2;
 use App\Models\Contact;
+use App\Models\Footer;
 use App\Models\Hero;
 use App\Models\Menu;
 use App\Models\Navbar;
@@ -41,6 +42,8 @@ class FrontendController extends Controller
             'ourcorevalue' => OurCoreValue::all(),
             'service' => Service::all(),
             'whychooseus' => WhyChooseUs::all(),
+            'footer' => Footer::all(),
+            
         ];
 
         return response()->json($data);
