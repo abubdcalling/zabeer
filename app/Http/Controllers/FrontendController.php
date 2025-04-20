@@ -32,11 +32,11 @@ class FrontendController extends Controller
     {
         $data = [
             'navbar' => Navbar::all(), 
-            'home' => Home::all(),
             'about' => About::all(),
             'aboutsec2' => AboutSec2::all(),
             'banner' => Banner::all(),
             'services_background' => Menu::all(),
+            'services_delivery' => Home::all(),
             'services_heading' => Hero::all(),
             'services_projectmanagement'=>Body1::all(),
             'services_support'=>Body2::all(),
