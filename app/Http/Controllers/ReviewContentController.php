@@ -9,6 +9,7 @@ use Exception;
 
 class ReviewContentController extends Controller
 {
+    
     public function show()
     {
         try {
@@ -37,9 +38,6 @@ class ReviewContentController extends Controller
     {
         try {
             $validated = $request->validate([
-                'name'     => 'nullable|string|max:100',
-                'star'     => 'required|integer|min:1|max:5',
-                'content'  => 'nullable|string',
                 'back_img' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:10240',
             ]);
 
@@ -53,9 +51,6 @@ class ReviewContentController extends Controller
             }
 
             $data = [
-                'name'     => $validated['name'] ?? null,
-                'star'     => $validated['star'],
-                'content'  => $validated['content'] ?? null,
                 'back_img' => $back_img,
             ];
 

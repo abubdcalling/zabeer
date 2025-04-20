@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Body1Controller;
 use App\Http\Controllers\Body2Controller;
+use App\Http\Controllers\ReviewDataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -176,6 +177,10 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware('auth:api')->group(function () {
     Route::get('/review/content', [ReviewContentController::class, 'show']);
     Route::post('/review/content', [ReviewContentController::class, 'storeOrUpdate']);
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('review-data', ReviewDataController::class);
 });
 
 
