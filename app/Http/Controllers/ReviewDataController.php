@@ -10,49 +10,73 @@ class ReviewDataController extends Controller
     // GET /api/review-data
     public function index()
     {
-        return response()->json(ReviewData::all());
+        try {
+            $data = ReviewData::all();
+            return response()->json(['success' => true, 'data' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to fetch data', 'error' => $e->getMessage()], 500);
+        }
     }
 
     // POST /api/review-data
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'star' => 'required|integer|min:1|max:5',
-            'content' => 'required|string',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'star' => 'required|integer|min:1|max:5',
+                'content' => 'required|string',
+            ]);
 
-        $review = ReviewData::create($request->only(['name', 'star', 'content']));
+            $review = ReviewData::create($request->only(['name', 'star', 'content']));
 
-        return response()->json($review, 201);
+            return response()->json(['success' => true, 'message' => 'Review created successfully', 'data' => $review], 201);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to create review', 'error' => $e->getMessage()], 500);
+        }
     }
 
     // GET /api/review-data/{id}
     public function show($id)
     {
-        return response()->json(ReviewData::findOrFail($id));
+        try {
+            $review = ReviewData::findOrFail($id);
+            return response()->json(['success' => true, 'data' => $review]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Review not found', 'error' => $e->getMessage()], 404);
+        }
     }
 
     // PUT /api/review-data/{id}
     public function update(Request $request, $id)
     {
-        $review = ReviewData::findOrFail($id);
+        try {
+            $review = ReviewData::findOrFail($id);
 
-        $request->validate([
-            'name' => 'sometimes|required|string',
-            'star' => 'sometimes|required|integer|min:1|max:5',
-            'content' => 'sometimes|required|string',
-        ]);
+            $request->validate([
+                'name' => 'sometimes|required|string',
+                'star' => 'sometimes|required|integer|min:1|max:5',
+                'content' => 'sometimes|required|string',
+            ]);
 
-        $review->update($request->only(['name', 'star', 'content']));
+            $review->update($request->only(['name', 'star', 'content']));
 
-        return response()->json($review);
+            return response()->json(['success' => true, 'message' => 'Review updated successfully', 'data' => $review]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to update review', 'error' => $e->getMessage()], 500);
+        }
     }
 
     // DELETE /api/review-data/{id}
     public function destroy($id)
     {
-        ReviewData::findOrFail($id)->delete();
-        return response()->json(['message' => 'Deleted successfully']);
+        try {
+            $review = ReviewData::findOrFail($id);
+            $review->delete();
+
+            return response()->json(['success' => true, 'message' => 'Review deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to delete review', 'error' => $e->getMessage()], 500);
+        }
     }
 }
