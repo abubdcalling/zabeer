@@ -54,9 +54,9 @@ class ReviewDataController extends Controller
             $review = ReviewData::findOrFail($id);
 
             $request->validate([
-                'name' => 'required|string',
-                'star' => 'required|integer|min:1|max:5',
-                'content' => 'required|string',
+                'name' => 'sometimes|required|string',
+                'star' => 'sometimes|required|integer|min:1|max:5',
+                'content' => 'sometimes|required|string',
             ]);
 
             $review->update($request->only(['name', 'star', 'content']));
