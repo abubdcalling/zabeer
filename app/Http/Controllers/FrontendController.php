@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ReviewData;
 use Illuminate\Http\Request;
 use App\Models\Home;
 use App\Models\Possible;
@@ -50,7 +51,7 @@ class FrontendController extends Controller
             'ourcontact' => OurContact::all(),
             'footer' => Footer::all(),
             'contactmessage' => ContactMessage::all(),
-            'reviewcontent' => ReviewContent::all(), 
+            'reviewcontent' => ReviewData::all(), 
             'address' => Address::all(),
 
         ];
