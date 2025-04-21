@@ -52,6 +52,7 @@ class FrontendController extends Controller
             'footer' => Footer::all(),
             'contactmessage' => ContactMessage::all(),
             'reviewcontent' => ReviewData::all(), 
+            'reviewBackimg' => ReviewContent::all(), 
             'address' => Address::all(),
 
         ];
