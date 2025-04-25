@@ -182,8 +182,7 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('review-data', ReviewDataController::class);
 });
-
-
+Route::get('/review-data-front', [ReviewDataController::class, 'getReviewData']);
 
 
 

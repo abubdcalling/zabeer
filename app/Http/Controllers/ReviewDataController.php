@@ -17,6 +17,15 @@ class ReviewDataController extends Controller
             return response()->json(['success' => false, 'message' => 'Failed to fetch data', 'error' => $e->getMessage()], 500);
         }
     }
+    public function getReviewData()
+    {
+        try {
+            $data = ReviewData::all();
+            return response()->json(['success' => true, 'data' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to fetch data', 'error' => $e->getMessage()], 500);
+        }
+    }
 
     // POST /api/review-data
     public function store(Request $request)
