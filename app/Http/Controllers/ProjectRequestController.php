@@ -33,7 +33,7 @@ class ProjectRequestController extends Controller
             'type_of_service' => 'nullable|string',
             'project_description' => 'nullable|string',
             'building_plans' => 'nullable|string|max:255',
-            'upload_building_plans' => 'nullable|string|max:255',
+            'upload_building_plans' => 'nullable|file',
             'requested_time_and_date' => 'nullable|date',
             'start_date' => 'nullable|date',
             'budget_range' => 'nullable|string|max:255',
@@ -41,11 +41,33 @@ class ProjectRequestController extends Controller
         ]);
 
         // Handle file upload
+        // if ($request->hasFile('upload_building_plans')) {
+        //     $file = $request->file('upload_building_plans');
+        //     $filePath = $file->store('uploads/Pdf', 'public'); // Save to storage/app/public/uploads
+        //     $validated['upload_building_plans'] = $filePath;
+        // }
+
         if ($request->hasFile('upload_building_plans')) {
             $file = $request->file('upload_building_plans');
-            $filePath = $file->store('uploads/Pdf', 'public'); // Save to storage/app/public/uploads
-            $validated['upload_building_plans'] = $filePath;
+
+            // Set upload path
+            $destinationPath = public_path('uploads/Pdf');
+
+            // Create directory if not exists
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            // Make unique file name
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // Move file to public/uploads/Pdf
+            $file->move($destinationPath, $fileName);
+
+            // Save relative file path in database
+            $validated['upload_building_plans'] = 'uploads/Pdf/' . $fileName;
         }
+
 
         $entry = ProjectRequest::create($validated);
 

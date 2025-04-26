@@ -20,7 +20,18 @@ class ProjectRequestReceived extends Mailable
 
     public function build()
     {
-        return $this->subject('New Project Request Received')
+        $email = $this->subject('New Project Request Received')
             ->view('emails.project_request_received');
+
+        if ($this->projectRequest->upload_building_plans) {
+            $filePath = public_path($this->projectRequest->upload_building_plans);
+            if (file_exists($filePath)) {
+                $email->attach($filePath);
+            }
+        }
+
+        return $email;
     }
+
+
 }
