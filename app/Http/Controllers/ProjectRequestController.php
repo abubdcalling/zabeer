@@ -76,6 +76,7 @@ class ProjectRequestController extends Controller
 
         // return response
         return response()->json([
+            'success' => true,
             'message' => 'Data saved and email sent successfully.',
             'data' => $entry
         ], 201);
@@ -125,6 +126,7 @@ class ProjectRequestController extends Controller
         $entry->update($validated);
 
         return response()->json([
+            'success' => true,
             'message' => 'Data updated successfully.',
             'data' => $entry
         ], 200);
