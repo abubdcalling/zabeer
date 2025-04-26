@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ProjectRequestReceived;
 use Illuminate\Http\Request;
 use App\Models\ProjectRequest;
+use Mail;
 
 class ProjectRequestController extends Controller
 {
