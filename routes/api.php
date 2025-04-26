@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectRequestController;
 use App\Http\Controllers\Body1Controller;
 use App\Http\Controllers\Body2Controller;
 use App\Http\Controllers\ReviewDataController;
@@ -204,3 +205,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/footer', [FooterController::class, 'show']);
     Route::post('/footer', [FooterController::class, 'storeOrUpdate']);
 });
+
+Route::apiResource('project-requests', ProjectRequestController::class);
