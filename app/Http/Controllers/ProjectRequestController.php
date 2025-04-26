@@ -40,6 +40,13 @@ class ProjectRequestController extends Controller
             'how_do_you_know_about_us' => 'nullable|string|max:255',
         ]);
 
+        // Handle file upload
+        if ($request->hasFile('upload_building_plans')) {
+            $file = $request->file('upload_building_plans');
+            $filePath = $file->store('uploads/Pdf', 'public'); // Save to storage/app/public/uploads
+            $validated['upload_building_plans'] = $filePath;
+        }
+
         $entry = ProjectRequest::create($validated);
 
         // Send Email
