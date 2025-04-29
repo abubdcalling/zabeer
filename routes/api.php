@@ -93,9 +93,11 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api')
 
 // Dynamic3 navbar Design
 Route::middleware('auth:api')->group(function () {
-    Route::get('/navbar', [NavbarController::class, 'show']);
     Route::post('/navbar', [NavbarController::class, 'storeOrUpdate']);
 });
+
+Route::get('/navbar', [NavbarController::class, 'show']);
+
 
 // Dynamic3 About us Design
 Route::middleware('auth:api')->group(function () {
