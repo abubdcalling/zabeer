@@ -4,6 +4,7 @@ use App\Http\Controllers\ProjectRequestController;
 use App\Http\Controllers\Body1Controller;
 use App\Http\Controllers\Body2Controller;
 use App\Http\Controllers\ReviewDataController;
+use App\Http\Controllers\UpdateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -201,6 +202,11 @@ Route::get('/frontend-data', [FrontendController::class, 'getAllData']);
 Route::post('/contactMessage', [ContactMessageController::class, 'store']);
 // Route::post('/Message', [ContactMessageController::class, 'store']);
 
+//for update email and password
+Route::middleware('auth:api')->group(function () {
+    Route::get('/updateEp', [UpdateController::class, 'show']);
+    Route::post('/updateEp', [UpdateController::class, 'UpdateEP']);
+});
 
 // Dynamic3 address Design
 Route::middleware('auth:api')->group(function () {
