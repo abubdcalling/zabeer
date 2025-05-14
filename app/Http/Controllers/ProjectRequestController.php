@@ -72,7 +72,7 @@ class ProjectRequestController extends Controller
         $entry = ProjectRequest::create($validated);
 
         // Send Email
-        Mail::to('abubdcalling@gmail.com')->send(new ProjectRequestReceived($entry));
+        Mail::to('estimating@dysonitworks.com')->send(new ProjectRequestReceived($entry));
 
         // return response
         return response()->json([
