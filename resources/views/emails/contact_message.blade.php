@@ -1,12 +1,11 @@
-<x-mail::message>
-# Introduction
+<h2>New Project Request</h2>
 
-The body of your message.
+<p><strong>First Name:</strong> {{ $contact->first_name }}</p>
+<p><strong>Last Name:</strong> {{ $contact->last_name }}</p>
+<p><strong>Phone Number:</strong> {{ $contact->phone_number }}</p>
+<p><strong>Company:</strong> {{ $contact->company_name }}</p>
+<p><strong>Email:</strong> {{ $contact->email_address }}</p>
+<p><strong>Comments/Questions:</strong> {{ $contact->comments }}</p>
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
+<p>Thank you!</p>
