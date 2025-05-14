@@ -77,7 +77,7 @@ class ProjectRequestController extends Controller
         // return response
         return response()->json([
             'success' => true,
-            'message' => 'Data saved and email sent successfully.',
+            'message' => 'Thank you for reaching out! We appreciate your message and will get back to you shortly.',
             'data' => $entry
         ], 201);
     }
